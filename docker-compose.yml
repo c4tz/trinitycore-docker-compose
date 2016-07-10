@@ -1,0 +1,36 @@
+version: '2'
+services:
+  mysql:
+    container_name: tc_db
+    environment:
+      CHANGETHIS: &root_pw VALUE
+      MYSQL_ROOT_PASSWORD: *root_pw
+    image: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    tty: true
+
+  trinitycore:
+    container_name: trinitycore
+    build:
+      context: trinitycore
+      args:
+        root_pw: *root_pw
+    links:
+      - mysql
+    ports:
+      - 8081:8081
+      - 8085:8085
+      - 8086:8086
+      - 1119:1119
+    volumes:
+      - ./trinitycore/conf/etc:/home/wow/server/etc
+      - ./trinitycore/game:/tmp/game
+      - ./trinitycore/data/dbc:/home/wow/server/bin/dbc
+      - ./trinitycore/data/maps:/home/wow/server/bin/maps
+      - ./trinitycore/data/mmaps:/home/wow/server/bin/mmaps
+      - ./trinitycore/data/vmaps:/home/wow/server/bin/vmaps
+      #- ./trinitycore/data/Cameras:/home/wow/server/bin/Cameras
+    tty: true
