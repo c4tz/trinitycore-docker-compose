@@ -39,7 +39,7 @@ to extract them. **Warning:** This will probably take some time (and space).
 
 ### Starting the servers
 
-When you have the maps in the given folders, you can start the server with
+When you have the maps in the given folders, you can start everything with
 
 ```docker-compose up```
 
