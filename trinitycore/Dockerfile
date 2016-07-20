@@ -44,7 +44,6 @@ RUN cd ~/source; \
 	mkdir build; \
 	cd build; \
 	cmake ../ -DCMAKE_INSTALL_PREFIX=/home/wow/server -DCONF_DIR=/home/wow/server/etc -DTOOLS=1 -DWITH_WARNINGS=1; \
-	make; \
 	make -j$(nproc) install;
 
 # download DB scripts
